@@ -23,7 +23,8 @@ public class Util {
         return dateFormat.format(date);
     }
     public  static String formatDate(DatePattern pattern,String date){
-        return formatDate(pattern,new Date(date));
+        // Date date1 = new Date();
+        return formatDate(pattern,new Date(Long.valueOf(date)));
     }
     public enum DatePattern{
         MM_DD_HH_MM("MM月dd日 HH:mm");

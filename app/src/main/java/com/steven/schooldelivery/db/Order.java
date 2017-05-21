@@ -24,7 +24,7 @@ public class Order extends DataSupport  implements Serializable {
     private String remark;
 
     @SerializedName("state")
-    private OrderState state;
+    private int state;
     @SerializedName("recipientId")
     private String recipientId;
     @SerializedName("replacementId")
@@ -68,7 +68,7 @@ public class Order extends DataSupport  implements Serializable {
         this.remark = remark;
     }
 
-    public void setState(OrderState state) {
+    public void setState(int state) {
         this.state = state;
     }
 
@@ -133,7 +133,12 @@ public class Order extends DataSupport  implements Serializable {
     }
 
     public OrderState getState() {
-        return state;
+        for (OrderState s : OrderState.values()) {
+            if (s.ordinal()==state){
+                return s;
+            }
+        }
+        return null;
     }
 
     public String getRecipientId() {

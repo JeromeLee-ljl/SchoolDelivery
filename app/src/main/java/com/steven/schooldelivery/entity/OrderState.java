@@ -21,7 +21,7 @@ public enum OrderState {
     TAKE_PARCEL_WAIT_DELIVERY("已收件，待送达"),
 
     //已确认
-    affirmative("已确认"),
+    AFFIRMATIVE("已确认"),
 
     //待评价 -1
     WAIT_COMMENT("待评价"),

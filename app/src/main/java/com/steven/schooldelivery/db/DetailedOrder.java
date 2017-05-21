@@ -35,7 +35,7 @@ public class DetailedOrder extends Order  {
     }
 
     public static void saveAll(List<DetailedOrder> orders){
-        DataSupport.deleteAll(Order.class);
+        DataSupport.deleteAll(DetailedOrder.class);
         for (DetailedOrder order : orders) {
             order.save();
         }

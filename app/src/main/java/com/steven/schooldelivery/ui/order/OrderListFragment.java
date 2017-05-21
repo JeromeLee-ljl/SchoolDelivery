@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +15,9 @@ import com.steven.schooldelivery.Config;
 import com.steven.schooldelivery.R;
 import com.steven.schooldelivery.adapter.OrderItemAdapter;
 import com.steven.schooldelivery.db.DetailedOrder;
-import com.steven.schooldelivery.db.Order;
-import com.steven.schooldelivery.entity.OrderState;
 import com.steven.schooldelivery.http.HttpGetOrders;
 import com.steven.schooldelivery.http.gson.HttpResponse;
+import com.steven.schooldelivery.util.LogUtil;
 
 import org.litepal.crud.DataSupport;
 
@@ -76,6 +74,7 @@ public class OrderListFragment extends Fragment {
             }
             getOrderData();
             getActivity().runOnUiThread(() -> {
+                LogUtil.d(TAG, "refresh: size:"+mOrders.size());
                 mOrderItemAdapter.notifyDataSetChanged();  //更新列表
                 mSwipeRefreshLayout.setRefreshing(false);
             });
@@ -94,7 +93,7 @@ public class OrderListFragment extends Fragment {
                 order1.setRecipientId("111");
                 order1.setReplacementId("222");
                 order1.setExpressName("圆通快递");
-                order1.setState(OrderState.ACCEPTED);
+                order1.setState(2);
                 order1.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order1.setOrderId("123");
@@ -116,7 +115,7 @@ public class OrderListFragment extends Fragment {
                 order2.setRecipientId("222");
                 order2.setReplacementId("111");
                 order2.setExpressName("圆通快递");
-                order2.setState(OrderState.ACCEPTED);
+                order2.setState(2);
                 order2.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order2.setOrderId("124");
@@ -133,36 +132,38 @@ public class OrderListFragment extends Fragment {
             }
             return;
         }
-        new Thread(() -> {
-            HttpResponse response = new HttpGetOrders().send(new HashMap<>());
-            if (response == null) {
-                getActivity().runOnUiThread(() -> Toast.makeText(getContext(), R.string.no_conntected_net, Toast.LENGTH_SHORT).show());
-            }else if(response.getStatus()==200){
-                List<DetailedOrder> orders = (List<DetailedOrder>) response.getData();
-                if (orders != null) {
-                    Log.d(TAG, "getOrderData: saveOrder:"+orders.size());
-                    Order.saveAll(orders);
-                }
-            }else{
-                getActivity().runOnUiThread(() -> Toast.makeText(getContext(), response.getMessage(), Toast.LENGTH_SHORT).show());
-            }
-        }).start();
 
+        HttpResponse response = new HttpGetOrders().send(new HashMap<>());
+        if (response == null) {
+            getActivity().runOnUiThread(() -> Toast.makeText(getContext(), R.string.no_conntected_net, Toast.LENGTH_SHORT).show());
+        } else if (response.getStatus() == 200) {
+            List<DetailedOrder> orders = (List<DetailedOrder>) response.getData();
+            if (orders != null) {
+                DetailedOrder.saveAll(orders);
+            }
+        } else {
+            getActivity().runOnUiThread(() -> Toast.makeText(getContext(), response.getMessage(), Toast.LENGTH_SHORT).show());
+        }
         switch (mType) {
             case ALL:
-                mOrders = DataSupport.findAll(DetailedOrder.class);
+                mOrders.clear();
+                mOrders.addAll(DataSupport.findAll(DetailedOrder.class));
                 break;
             case UNFINISHED:
-                // mOrders = DataSupport.where("")
-                mOrders = DataSupport.findAll(DetailedOrder.class);
+                mOrders.clear();
+                mOrders.addAll(DataSupport.findAll(DetailedOrder.class));
                 break;
             case FINISHED:
-                mOrders = DataSupport.findAll(DetailedOrder.class);
+                mOrders.clear();
+                mOrders.addAll(DataSupport.findAll(DetailedOrder.class));
                 break;
             default:
+                mOrders.clear();
                 mOrders = DataSupport.findAll(DetailedOrder.class);
                 break;
         }
+        LogUtil.d(TAG, "getOrderData: size:"+mOrders.size());
+
     }
 
     private void initView() {

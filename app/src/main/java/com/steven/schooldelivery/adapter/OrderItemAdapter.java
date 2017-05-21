@@ -95,7 +95,7 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
             holder.type_recipient_textView.setVisibility(View.INVISIBLE);
             holder.type_replace_textView.setVisibility(View.VISIBLE);
 
-            holder.recipient_info_RelativeLayout.setVisibility(View.INVISIBLE);//代取单需要收件人的信息
+            holder.recipient_info_RelativeLayout.setVisibility(View.GONE);//不显示  //代取单需要收件人的信息
             // holder.recipient_name_textView.setText(order.getRecipientName());
             // holder.recipient_phone_textView.setText(order.getRecipientPhone());
         }
@@ -116,6 +116,7 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
 
     @Override
     public int getItemCount() {
+        // LogUtil.d(TAG, "getItemCount: "+mOrders.size());
         return mOrders.size();
     }
 

@@ -13,7 +13,6 @@ import com.steven.schooldelivery.R;
 import com.steven.schooldelivery.adapter.AcceptOrderItemAdapter;
 import com.steven.schooldelivery.adapter.entity.AcceptOrderItem;
 import com.steven.schooldelivery.db.Order;
-import com.steven.schooldelivery.entity.OrderState;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -109,7 +108,7 @@ public class AcceptOrderFragment extends Fragment{
             order1.setRecipientId("111");
             order1.setReplacementId("222");
             order1.setExpressName("圆通");
-            order1.setState(OrderState.ACCEPTED);
+            order1.setState(2);
             order1.setCreatetime(String.valueOf(new Timestamp(2017,5,1,10,55,10,0).getTime()));
 
             order1.setOrderId("123");
@@ -130,7 +129,7 @@ public class AcceptOrderFragment extends Fragment{
             order2.setRecipientId("111");
             order2.setReplacementId("222");
             order2.setExpressName("韵达");
-            order2.setState(OrderState.ACCEPTED);
+            order2.setState(2);
             order2.setCreatetime(String.valueOf(new Timestamp(2017,5,1,10,55,10,0).getTime()));
 
             order2.setOrderId("124");
