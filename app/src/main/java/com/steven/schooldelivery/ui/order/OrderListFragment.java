@@ -146,7 +146,7 @@ public class OrderListFragment extends Fragment {
             }else{
                 getActivity().runOnUiThread(() -> Toast.makeText(getContext(), response.getMessage(), Toast.LENGTH_SHORT).show());
             }
-        }).start();   
+        }).start();
 
         switch (mType) {
             case ALL:
