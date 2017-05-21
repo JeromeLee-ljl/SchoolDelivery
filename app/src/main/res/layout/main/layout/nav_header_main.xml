@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/side_nav_bar"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/user_imageView"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="@dimen/nav_header_vertical_spacing"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/app_icon"/>
+
+
+    <TextView
+        android:id="@+id/phone_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="130"
+        app:layout_constraintLeft_toLeftOf="@+id/user_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/user_imageView"/>
+
+    <TextView
+        android:id="@+id/name_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="姓名"
+        app:layout_constraintBottom_toBottomOf="@+id/user_imageView"
+        app:layout_constraintLeft_toRightOf="@+id/user_imageView"
+        app:layout_constraintTop_toTopOf="@+id/user_imageView"
+        app:layout_constraintVertical_bias="0.507"
+        android:layout_marginStart="24dp"/>
+
+</android.support.constraint.ConstraintLayout>

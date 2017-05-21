@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<litepal>
+    <dbname value="SchoolDelivery"/>
+    <version value="3"/>
+    <list>
+        <mapping class = "com.steven.schooldelivery.db.User"/>
+        <mapping class="com.steven.schooldelivery.db.DetailedOrder"/>
+    </list>
+</litepal>

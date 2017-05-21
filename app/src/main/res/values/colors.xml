@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--主题颜色-->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#FFC107</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+
+
+    <color name="background">@color/icons</color>
+    <color name="input">#00ffffff</color>
+    <color name="inputbackground">@color/divider</color>
+
+
+
+
+    <color name="transparent">#00ffffff</color>
+
+    <color name="gargoyleGas">#ffe74c</color>
+    <color name="OriolesOrange">#fc440f</color>
+    <color name="grey">#efefef</color>
+    <color name="snow">#fbfbfb</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+
+</resources>

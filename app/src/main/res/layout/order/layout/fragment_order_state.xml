@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SwipeRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/created_constraintLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="20dp">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/title_textView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="创建订单"-->
+                <!--android:textColor="@color/primary_text"-->
+                <!--android:textSize="18sp"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="16dp"-->
+                <!--android:layout_marginLeft="0dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:text="请耐心等待代取人接单"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="@+id/title_textView"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/title_textView"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/time_textView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--app:layout_constraintBaseline_toBaselineOf="@+id/title_textView"-->
+                <!--app:layout_constraintRight_toRightOf="parent"/>-->
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/accepted_constraintLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/accept_title_textView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="代取人已接单"-->
+                <!--android:textColor="@color/primary_text"-->
+                <!--android:textSize="18sp"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:layout_marginLeft="0dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="等待代取人取得快递"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="@+id/accept_title_textView"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/accept_title_textView"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/accept_time_textView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--app:layout_constraintBaseline_toBaselineOf="@+id/accept_title_textView"-->
+                <!--app:layout_constraintRight_toRightOf="parent"/>-->
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/pickedup_constraintLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/pickup_title_textView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="代取人已领取快递"-->
+                <!--android:textColor="@color/primary_text"-->
+                <!--android:textSize="18sp"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--tools:text="等待送达"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/textView15"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="16dp"-->
+                <!--android:layout_marginLeft="0dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:text="代取人送达中。。。"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="@+id/pickup_title_textView"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/pickup_title_textView"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/pickup_time_textView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--app:layout_constraintBaseline_toBaselineOf="@+id/pickup_title_textView"-->
+                <!--app:layout_constraintRight_toRightOf="parent"/>-->
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/complete_constraintLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/complete_title_textView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="订单完成"-->
+                <!--android:textColor="@color/primary_text"-->
+                <!--android:textSize="18sp"-->
+                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="16dp"-->
+                <!--android:layout_marginLeft="0dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:text="订单已完成"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintLeft_toLeftOf="@+id/complete_title_textView"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/complete_title_textView"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/complete_time_textView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--app:layout_constraintBaseline_toBaselineOf="@+id/complete_title_textView"-->
+                <!--app:layout_constraintRight_toRightOf="parent"/>-->
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+    <!--</LinearLayout>-->
+
+</android.support.v4.widget.SwipeRefreshLayout>

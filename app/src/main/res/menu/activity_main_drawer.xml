@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_assignment_black_36dp"
+            android:checked="true"
+            android:title="我的订单"/>
+        <item
+            android:id="@+id/nav_accept_order"
+            android:icon="@drawable/ic_apps_black_36dp"
+            android:title="我要接单"/>
+        <item
+            android:id="@+id/nav_msg"
+            android:icon="@drawable/ic_message_white_48dp"
+            android:title="我的消息"/>
+        <item
+            android:id="@+id/nav_user_info"
+            android:icon="@drawable/ic_person_outline_black_36dp"
+            android:title="个人信息"/>
+    </group>
+    <group>
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="设置"/>
+    </group>
+
+</menu>

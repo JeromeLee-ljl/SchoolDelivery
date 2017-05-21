@@ -1,0 +1,10 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+    <!--滑动菜单顶部背景-->
+    <gradient
+        android:angle="135"
+        android:endColor="@color/primary_light"
+        android:centerColor="@color/primary"
+        android:startColor="@color/primary_dark"
+        android:type="linear"/>
+</shape>

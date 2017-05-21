@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/SwipeRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/linearlayout_divider"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:padding="12sp"
+                android:text="取件信息"
+                android:textColor="@color/primary_text"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="取件时间"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/pickup_time_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@+id/textView19"
+                    android:layout_toRightOf="@+id/textView19"
+                    android:padding="12sp"
+                    android:text="5月17日 15:15"
+                    android:textColor="@color/primary_text"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="取件地点"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/pickup_address_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@+id/textView20"
+                    android:layout_toRightOf="@+id/textView20"
+                    android:padding="12sp"
+                    android:text="东门"
+                    android:textColor="@color/primary_text"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="快递单号"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/express_code_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@+id/textView23"
+                    android:layout_toRightOf="@+id/textView23"
+                    android:padding="12sp"
+                    android:text="1231213545"
+                    android:textColor="@color/primary_text"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="代取人姓名"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/replacement_name_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView22"
+                    android:layout_toRightOf="@+id/textView22"
+                    android:padding="12sp"
+                    android:text="Jack"
+                    android:textColor="@color/primary_text"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="代取人手机"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/replacement_phone_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView21"
+                    android:layout_toRightOf="@+id/textView21"
+                    android:padding="12sp"
+                    android:text="13045695875"
+                    android:textColor="@color/primary_text"/>
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:padding="12sp"
+                android:text="送件信息"
+                android:textColor="@color/primary_text"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="期望时间"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/delivery_time_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@+id/textView24"
+                    android:layout_toRightOf="@+id/textView24"
+                    android:padding="12sp"
+                    android:text="5月18日 15:15"
+                    android:textColor="@color/primary_text"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="送件地点"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/delivery_address_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@+id/textView25"
+                    android:layout_toRightOf="@+id/textView25"
+                    android:padding="12sp"
+                    android:text="66号楼666"
+                    android:textColor="@color/primary_text"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="收件人姓名"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/recipient_name_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView27"
+                    android:layout_toRightOf="@+id/textView27"
+                    android:padding="12sp"
+                    android:text="Linda"
+                    android:textColor="@color/primary_text"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="收件人手机"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/recipient_phone_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView26"
+                    android:layout_toRightOf="@+id/textView26"
+                    android:padding="12sp"
+                    android:text="18216485795"
+                    android:textColor="@color/primary_text"/>
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:padding="12sp"
+                android:text="备注"
+                android:textColor="@color/primary_text"/>
+
+            <TextView
+                android:id="@+id/remark_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/textView26"
+                android:layout_toRightOf="@+id/textView26"
+                android:padding="12sp"
+                android:text="无"
+                android:textColor="@color/primary_text"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:padding="12sp"
+                android:text="订单详情"
+                android:textColor="@color/primary_text"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="创建时间"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/time_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@+id/textView28"
+                    android:layout_toRightOf="@+id/textView28"
+                    android:padding="12sp"
+                    android:text="5月18日 15:15"
+                    android:textColor="@color/primary_text"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="订单号码"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/order_id_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@+id/textView29"
+                    android:layout_toRightOf="@+id/textView29"
+                    android:padding="12sp"
+                    android:text="123123123142"
+                    android:textColor="@color/primary_text"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="物件大小"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/order_size_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@+id/textView31"
+                    android:layout_toRightOf="@+id/textView31"
+                    android:padding="12sp"
+                    android:text="小"
+                    android:textColor="@color/primary_text"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12sp"
+                    android:text="订单金额"
+                    android:textColor="@color/secondary_text"/>
+
+                <TextView
+                    android:id="@+id/order_cost_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_toEndOf="@+id/textView30"
+                    android:layout_toRightOf="@+id/textView30"
+                    android:padding="12sp"
+                    android:text="5元"
+                    android:textColor="@color/primary_text"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/complaint_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="订单申述"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.v4.widget.SwipeRefreshLayout>
