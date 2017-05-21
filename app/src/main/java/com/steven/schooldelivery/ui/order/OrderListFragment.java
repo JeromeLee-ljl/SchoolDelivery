@@ -142,7 +142,7 @@ public class OrderListFragment extends Fragment {
                 DetailedOrder.saveAll(orders);
             }
         } else {
-            
+
             getActivity().runOnUiThread(() -> Toast.makeText(getContext(), response.getMessage(), Toast.LENGTH_SHORT).show());
         }
         switch (mType) {
