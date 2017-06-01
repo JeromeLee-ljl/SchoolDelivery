@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 
 import com.steven.schooldelivery.R;
 import com.steven.schooldelivery.base.BaseActivity;
+import com.steven.schooldelivery.db.DetailedOrder;
 import com.steven.schooldelivery.db.Order;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class OrderInfoActivity extends BaseActivity {
     private List<Fragment> mFragmentList;
 
     // private String  mOrderId;
-    private Order mOrder;
+    private DetailedOrder  mOrder;
 
 
     @Override
@@ -35,7 +36,7 @@ public class OrderInfoActivity extends BaseActivity {
     }
 
     private void init() {
-        mOrder = (Order) getIntent().getSerializableExtra("order");
+        mOrder = (DetailedOrder) getIntent().getSerializableExtra("order");
 
         setToolBar("订单信息");
         initFragment();

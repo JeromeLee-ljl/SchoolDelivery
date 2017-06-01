@@ -15,7 +15,7 @@ public class OrdersEntity {
     private Double ordersCost;
     private String ordersRemark;
 
-    private OrderState ordersState;
+    private OrderStateEnum ordersState;
 
     private String recipientId;
     private String replacementId;
@@ -89,11 +89,11 @@ public class OrdersEntity {
 
      
      
-    public OrderState getOrdersState() {
+    public OrderStateEnum getOrdersState() {
         return ordersState;
     }
 
-    public void setOrdersState(OrderState ordersState) {
+    public void setOrdersState(OrderStateEnum ordersState) {
         this.ordersState = ordersState;
     }
 

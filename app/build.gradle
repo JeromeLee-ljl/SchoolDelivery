@@ -35,6 +35,7 @@ android {
                     'src/main/res/layout/userinfo',
                     'src/main/res/layout/acceptorder',
                     'src/main/res/layout/complain',
+                    'src/main/res/layout/message',
                     'src/main/res/layout/toolbar'
             ]
         }
@@ -69,6 +70,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
 }
+
 
 
 

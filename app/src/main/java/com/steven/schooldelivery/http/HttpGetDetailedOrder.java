@@ -10,14 +10,19 @@ import java.util.Map;
  */
 
 public class HttpGetDetailedOrder extends HttpSend {
+
     @Override
     String request(Map<String, String> params) {
-        return HttpUtil.doGetWithToken(null, params);
-        // return HttpUtil.doGetWithToken(HttpUrl.ORDER_FIND_DETAILED_ORDER, params);
+        String s = params.get("order_id");
+
+        return HttpUtil.doGetWithToken(HttpUrl.SERVER_URL + "/orders/" + s, params);
     }
 
     @Override
     Object parse(String content) {
-        return gson.fromJson(content, DetailedOrder.class);
+        DetailedOrder detailedOrder = gson.fromJson(content, DetailedOrder.class);
+        // detailedOrder.setRecipient(gson.fromJson(detailedOrder.getRecipient().toString(), User.class));
+        // detailedOrder.setReplacement(gson.fromJson(detailedOrder.getReplacement().toString(), User.class));
+        return detailedOrder;
     }
 }

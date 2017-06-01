@@ -17,6 +17,7 @@ import com.steven.schooldelivery.db.DetailedOrder;
 import com.steven.schooldelivery.db.Order;
 import com.steven.schooldelivery.ui.order.grade.GradeDialog;
 import com.steven.schooldelivery.ui.order.info.OrderInfoActivity;
+import com.steven.schooldelivery.util.LogUtil;
 import com.steven.schooldelivery.util.Util;
 
 import java.util.List;
@@ -116,7 +117,7 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
 
     @Override
     public int getItemCount() {
-        // LogUtil.d(TAG, "getItemCount: "+mOrders.size());
+        LogUtil.d(TAG, "getItemCount: "+mOrders.size());
         return mOrders.size();
     }
 

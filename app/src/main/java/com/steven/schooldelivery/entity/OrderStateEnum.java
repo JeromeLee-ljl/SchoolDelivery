@@ -6,7 +6,7 @@ package com.steven.schooldelivery.entity;
  * @author finderlo
  * @date 17/04/2017
  */
-public enum OrderState {
+public enum OrderStateEnum {
     // -1 代表完成订单
 
     WAIT_PAY("等待支付"),
@@ -51,8 +51,16 @@ public enum OrderState {
         }
     }
 
-    OrderState(String type) {
+    OrderStateEnum(String type) {
         this.type = type;
+    }
+
+    public static OrderStateEnum getByNum(int num){
+        OrderStateEnum[] orderStates = OrderStateEnum.values();
+        for (OrderStateEnum orderState : orderStates) {
+            if(orderState.ordinal()==num) return orderState;
+        }
+        return null;
     }
 
     @Override

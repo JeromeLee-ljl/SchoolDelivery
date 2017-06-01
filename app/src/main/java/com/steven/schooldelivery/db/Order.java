@@ -1,7 +1,8 @@
 package com.steven.schooldelivery.db;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.google.gson.annotations.SerializedName;
-import com.steven.schooldelivery.entity.OrderState;
+import com.steven.schooldelivery.entity.OrderStateEnum;
 
 import org.litepal.crud.DataSupport;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
 
 public class Order extends DataSupport  implements Serializable {
     @SerializedName("id")
+    @JSONField(name = "id")
     private String orderId;
     //todo
     @SerializedName("createTime")
@@ -132,8 +134,8 @@ public class Order extends DataSupport  implements Serializable {
         return remark;
     }
 
-    public OrderState getState() {
-        for (OrderState s : OrderState.values()) {
+    public OrderStateEnum getState() {
+        for (OrderStateEnum s : OrderStateEnum.values()) {
             if (s.ordinal()==state){
                 return s;
             }

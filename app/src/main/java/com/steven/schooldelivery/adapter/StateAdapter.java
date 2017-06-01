@@ -1,13 +1,15 @@
 package com.steven.schooldelivery.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.steven.schooldelivery.R;
-import com.steven.schooldelivery.entity.OrdersOperationLogEntity;
+import com.steven.schooldelivery.entity.OrderStateEnum;
+import com.steven.schooldelivery.http.gson.OrderStateJson;
 import com.steven.schooldelivery.util.Util;
 
 import java.util.List;
@@ -17,10 +19,12 @@ import java.util.List;
  */
 
 public class StateAdapter extends RecyclerView.Adapter<StateAdapter.ViewHolder> {
-    private List<OrdersOperationLogEntity> orderStates;
+    private static final String TAG = "StateAdapter";
+    private List<OrderStateJson> orderStates;
 
-    public StateAdapter(List<OrdersOperationLogEntity> ordersOperationLogEntities) {
-        this.orderStates = ordersOperationLogEntities;
+    public StateAdapter(List<OrderStateJson> orderStates) {
+        Log.d(TAG, "StateAdapter: ");
+        this.orderStates = orderStates;
     }
 
     @Override
@@ -33,14 +37,16 @@ public class StateAdapter extends RecyclerView.Adapter<StateAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        OrdersOperationLogEntity logEntity = orderStates.get(position);
-        holder.title.setText(logEntity.getStateType());
-        holder.time.setText(Util.formatDate(Util.DatePattern.MM_DD_HH_MM, logEntity.getStateChangeTime()));
+        OrderStateJson logEntity = orderStates.get(position);
+
+        holder.title.setText(Util.enumFromOrigin(logEntity.getOrderState(), OrderStateEnum.class).toString());
+        holder.time.setText(Util.formatDate(Util.DatePattern.MM_DD_HH_MM, logEntity.getChangeTime()));
         holder.info.setText("");// TODO: 2017/5/13
     }
 
     @Override
     public int getItemCount() {
+        Log.d(TAG, "getItemCount: "+orderStates.size());
         return orderStates.size();
     }
 

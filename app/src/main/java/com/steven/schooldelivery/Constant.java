@@ -49,6 +49,14 @@ public class Constant {
             public static final String PICKUPCODE = "pickup_code";
             public static final String ORDERREMARK = "order_remark";
         }
+
+        public static class Complaints{
+            public static final String TYPE = "type";
+            public static final String ORDERID = "order_id";
+            public static final String DESCRIPTION = "description";
+        }
+
+
     }
 
 

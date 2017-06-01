@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/primary"
+    android:fitsSystemWindows="true"
     tools:context="com.steven.schooldelivery.ui.order.info.OrderInfoActivity">
 
     <!--toolbar-->
@@ -15,11 +17,13 @@
         android:id="@+id/order_info_tabLayout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+
         android:background="@color/primary"
         app:tabSelectedTextColor="@color/accent"
         app:tabTextColor="@color/white"/>
 
     <android.support.v4.view.ViewPager
+        android:background="@color/white"
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

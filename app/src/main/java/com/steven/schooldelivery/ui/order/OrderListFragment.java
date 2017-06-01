@@ -139,6 +139,7 @@ public class OrderListFragment extends Fragment {
         } else if (response.getStatus() == 200) {
             List<DetailedOrder> orders = (List<DetailedOrder>) response.getData();
             if (orders != null) {
+                // Log.d(TAG, "onCreateViewHolder: "+orders.get(0).getOrderId());
                 DetailedOrder.saveAll(orders);
             }
         } else {
@@ -160,7 +161,7 @@ public class OrderListFragment extends Fragment {
                 break;
             default:
                 mOrders.clear();
-                mOrders = DataSupport.findAll(DetailedOrder.class);
+                mOrders.addAll(DataSupport.findAll(DetailedOrder.class));
                 break;
         }
         LogUtil.d(TAG, "getOrderData: size:"+mOrders.size());

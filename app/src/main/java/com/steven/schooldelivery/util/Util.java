@@ -26,6 +26,9 @@ public class Util {
         // Date date1 = new Date();
         return formatDate(pattern,new Date(Long.valueOf(date)));
     }
+    public static String formatDate(String date){
+        return formatDate(DatePattern.MM_DD_HH_MM,date);
+    }
     public enum DatePattern{
         MM_DD_HH_MM("MM月dd日 HH:mm");
 
@@ -53,6 +56,22 @@ public class Util {
         }
         response.setData(orderEntities);
         return response;
+    }
+
+
+
+    public static <T extends Enum<T>> T enumFromOrigin(int origin, Class<T> classT) {
+        T[] values = classT.getEnumConstants();
+        for (T t : values) {
+            Enum ty = (Enum) t;
+            if (ty.ordinal() == origin) {
+                return t;
+            }
+        }
+        return null;
+    }
+    public static <T extends Enum<T>> T enumFromOrigin(String origin, Class<T> classT) {
+        return enumFromOrigin(Integer.parseInt(origin),classT);
     }
 
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/SwipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -47,7 +48,7 @@
                     android:layout_toEndOf="@+id/textView19"
                     android:layout_toRightOf="@+id/textView19"
                     android:padding="12sp"
-                    android:text="5月17日 15:15"
+                    android:text="未填写"
                     android:textColor="@color/primary_text"/>
             </RelativeLayout>
 
@@ -73,7 +74,7 @@
                     android:layout_toEndOf="@+id/textView20"
                     android:layout_toRightOf="@+id/textView20"
                     android:padding="12sp"
-                    android:text="东门"
+                    android:text="未填写"
                     android:textColor="@color/primary_text"/>
             </RelativeLayout>
 
@@ -99,7 +100,7 @@
                     android:layout_toEndOf="@+id/textView23"
                     android:layout_toRightOf="@+id/textView23"
                     android:padding="12sp"
-                    android:text="1231213545"
+                    android:text="未填写"
                     android:textColor="@color/primary_text"/>
             </RelativeLayout>
 
@@ -123,7 +124,7 @@
                     android:layout_toEndOf="@+id/textView22"
                     android:layout_toRightOf="@+id/textView22"
                     android:padding="12sp"
-                    android:text="Jack"
+                    android:text="无"
                     android:textColor="@color/primary_text"/>
 
             </RelativeLayout>
@@ -148,7 +149,7 @@
                     android:layout_toEndOf="@+id/textView21"
                     android:layout_toRightOf="@+id/textView21"
                     android:padding="12sp"
-                    android:text="13045695875"
+                    android:text="无"
                     android:textColor="@color/primary_text"/>
             </RelativeLayout>
 
@@ -183,8 +184,9 @@
                     android:layout_toEndOf="@+id/textView24"
                     android:layout_toRightOf="@+id/textView24"
                     android:padding="12sp"
-                    android:text="5月18日 15:15"
-                    android:textColor="@color/primary_text"/>
+                    android:text="未填写"
+                    android:textColor="@color/primary_text"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -209,7 +211,7 @@
                     android:layout_toEndOf="@+id/textView25"
                     android:layout_toRightOf="@+id/textView25"
                     android:padding="12sp"
-                    android:text="66号楼666"
+                    android:text="未填写"
                     android:textColor="@color/primary_text"/>
             </RelativeLayout>
 
@@ -233,7 +235,7 @@
                     android:layout_toEndOf="@+id/textView27"
                     android:layout_toRightOf="@+id/textView27"
                     android:padding="12sp"
-                    android:text="Linda"
+                    android:text="无"
                     android:textColor="@color/primary_text"/>
             </RelativeLayout>
 
@@ -257,7 +259,7 @@
                     android:layout_toEndOf="@+id/textView26"
                     android:layout_toRightOf="@+id/textView26"
                     android:padding="12sp"
-                    android:text="18216485795"
+                    android:text="无"
                     android:textColor="@color/primary_text"/>
 
             </RelativeLayout>
@@ -313,7 +315,7 @@
                     android:layout_toEndOf="@+id/textView28"
                     android:layout_toRightOf="@+id/textView28"
                     android:padding="12sp"
-                    android:text="5月18日 15:15"
+                    android:text="无"
                     android:textColor="@color/primary_text"/>
 
             </RelativeLayout>
@@ -340,7 +342,7 @@
                     android:layout_toEndOf="@+id/textView29"
                     android:layout_toRightOf="@+id/textView29"
                     android:padding="12sp"
-                    android:text="123123123142"
+                    android:text="无"
                     android:textColor="@color/primary_text"/>
 
             </RelativeLayout>
@@ -367,7 +369,7 @@
                     android:layout_toEndOf="@+id/textView31"
                     android:layout_toRightOf="@+id/textView31"
                     android:padding="12sp"
-                    android:text="小"
+                    android:text="未填写"
                     android:textColor="@color/primary_text"/>
             </RelativeLayout>
 
@@ -393,7 +395,7 @@
                     android:layout_toEndOf="@+id/textView30"
                     android:layout_toRightOf="@+id/textView30"
                     android:padding="12sp"
-                    android:text="5元"
+                    android:text="未填写"
                     android:textColor="@color/primary_text"/>
             </RelativeLayout>
 

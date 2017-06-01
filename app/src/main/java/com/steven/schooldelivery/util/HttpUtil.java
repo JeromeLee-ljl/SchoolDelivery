@@ -88,7 +88,7 @@ public class HttpUtil {
         try {
             response = dopostWithExp(url, params);
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return response;
     }

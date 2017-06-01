@@ -3,11 +3,12 @@ package com.steven.schooldelivery.http;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.steven.schooldelivery.db.DetailedOrder;
 import com.steven.schooldelivery.http.gson.HttpResponse;
-import com.steven.schooldelivery.http.gson.OrderStateJson;
 import com.steven.schooldelivery.util.HttpUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,17 +16,14 @@ import java.util.Map;
  * Created by 22340 on 2017/5/13.
  */
 
-public class HttpGetOrderStates extends HttpSend {
+public class HttpGetAcceptOrders extends HttpSend {
     @Override
     String request(Map<String, String> params) {
-        String s = params.get("order_id");
-
-        return HttpUtil.doGetWithToken(HttpUrl.SERVER_URL + "/orders/" + s+"/process", params);
+        return HttpUtil.doGetWithToken(HttpUrl.ORDER_ACCEPT,new HashMap<>());
     }
 
     @Override
     Object parse(String content) {
-
         return null;
     }
 
@@ -37,9 +35,9 @@ public class HttpGetOrderStates extends HttpSend {
             return response;
         }
 
-        List<OrderStateJson> orderEntities = new ArrayList<>();
+        List<DetailedOrder> orderEntities = new ArrayList<>();
         for (Object e : array) {
-            orderEntities.add(((JSONObject) e).toJavaObject(OrderStateJson.class));
+            orderEntities.add(((JSONObject) e).toJavaObject(DetailedOrder.class));
         }
         response.setData(orderEntities);
         return response;

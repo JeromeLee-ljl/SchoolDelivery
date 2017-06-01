@@ -12,21 +12,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.steven.schooldelivery.R;
-import com.steven.schooldelivery.db.Order;
-import com.steven.schooldelivery.http.HttpGetDetailedOrder;
 import com.steven.schooldelivery.db.DetailedOrder;
+import com.steven.schooldelivery.http.HttpGetDetailedOrder;
 import com.steven.schooldelivery.http.gson.HttpResponse;
+import com.steven.schooldelivery.ui.complain.ComplainActivity;
 import com.steven.schooldelivery.util.LogUtil;
+import com.steven.schooldelivery.util.Util;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.Locale;
 
 /**
  * Created by 22340 on 2017/5/10.
  */
-
 
 public class OrderDetailFragment extends Fragment {
     private static final String TAG = "OrderDetailFragment";
@@ -41,11 +38,12 @@ public class OrderDetailFragment extends Fragment {
     private Button mComplainButton;
 
     // private String mOrderId;
-    private Order mOrder;
+    private DetailedOrder mOrder;
 
-    public OrderDetailFragment(Order order) {
+    public OrderDetailFragment(DetailedOrder order) {
         mOrder = order;
         LogUtil.d(TAG, "OrderDetailFragment: order:" + order);
+        LogUtil.d(TAG, "OrderDetailFragment: orderID:" + order.getOrderId());
     }
 
     @Nullable
@@ -68,22 +66,23 @@ public class OrderDetailFragment extends Fragment {
      * 将order的信息呈现在界面上，若不为空的话
      */
     private void showOrder(DetailedOrder order) {
-        DateFormat dateFormat = new SimpleDateFormat("MM月dd日 HH:mm", Locale.CHINA);
         //取件信息
-        pickup_time_textView.setText(dateFormat.format(order.getPickupTime()));
+        pickup_time_textView.setText(Util.formatDate(order.getPickupTime()));
         pickup_address_textView.setText(order.getPickupAddress());
         express_code_textView.setText(order.getExpressCode());
-        replacement_name_textView.setText(order.getReplacement().getName());
-        replacement_phone_textView.setText(order.getReplacement().getPhone());
+        if(order.getReplacement()!=null){
+            replacement_name_textView.setText(order.getReplacement().getName());
+            replacement_phone_textView.setText(order.getReplacement().getPhone());
+        }
         //送件信息
-        delivery_time_textView.setText(dateFormat.format(order.getDeliveryTime()));
+        delivery_time_textView.setText(Util.formatDate(order.getDeliveryTime()));
         delivery_address_textView.setText(order.getDeliveryAddress());
         recipient_name_textView.setText(order.getRecipient().getName());
         recipient_phone_textView.setText(order.getRecipient().getPhone());
         //备注
         remark_textView.setText(order.getRemark());
         //订单详情
-        create_time_textView.setText(dateFormat.format(order.getCreatetime()));
+        create_time_textView.setText(Util.formatDate(order.getCreatetime()));
         order_id_textView.setText(order.getOrderId());
         if (order.getPrice() == 5) {
             order_size_textView.setText("小件");
@@ -129,7 +128,7 @@ public class OrderDetailFragment extends Fragment {
             case WAIT_ACCEPT:
             case ACCEPTED:
             case TAKE_PARCEL_WAIT_DELIVERY:
-
+                ComplainActivity.actionStart(getContext(),mOrder.getOrderId());
                 break;
             default:
                 Toast.makeText(getContext(),"不满足申诉条件",Toast.LENGTH_SHORT).show();

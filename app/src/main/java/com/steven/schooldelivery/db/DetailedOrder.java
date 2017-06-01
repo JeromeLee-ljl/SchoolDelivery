@@ -1,5 +1,6 @@
 package com.steven.schooldelivery.db;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import org.litepal.crud.DataSupport;
@@ -39,5 +40,14 @@ public class DetailedOrder extends Order  {
         for (DetailedOrder order : orders) {
             order.save();
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(" id:").append(getOrderId())
+                .append(" createTime:").append(getCreatetime());
+        // return builder.toString();
+        return new Gson().toJson(this);
     }
 }

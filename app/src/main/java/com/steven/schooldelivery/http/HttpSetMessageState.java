@@ -5,13 +5,14 @@ import com.steven.schooldelivery.util.HttpUtil;
 import java.util.Map;
 
 /**
- * Created by 22340 on 2017/5/17.
+ * Created by 22340 on 2017/5/24.
  */
 
-public class HttpComplain extends HttpSend{
+public class HttpSetMessageState extends HttpSend {
     @Override
     String request(Map<String, String> params) {
-        return HttpUtil.doPostWithToken(HttpUrl.ORDER_COMPLAINTS,params);
+        String messageId = params.get("messageId");
+        return HttpUtil.doPutWithToken(HttpUrl.MESSAGES+"/"+messageId,params);
     }
 
     @Override

@@ -25,6 +25,7 @@ import com.steven.schooldelivery.base.BaseActivity;
 import com.steven.schooldelivery.db.User;
 import com.steven.schooldelivery.http.gson.HttpResponse;
 import com.steven.schooldelivery.ui.acceptOrder.AcceptOrderFragment;
+import com.steven.schooldelivery.ui.message.MessagesFragment;
 import com.steven.schooldelivery.ui.order.NewOrderActivity;
 import com.steven.schooldelivery.ui.order.OrderFragment;
 import com.steven.schooldelivery.ui.setting.SettingActivity;
@@ -63,7 +64,7 @@ public class MainActivity extends BaseActivity
 
         mOrderFragment = new OrderFragment();
         mAcceptOrderFragment = new AcceptOrderFragment();
-        // mMessageFragment = new
+        mMessageFragment = new MessagesFragment();
         //加载订单fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -188,6 +189,7 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_msg) {
             actionBar.setTitle("我的消息");
+            replaceFragment(mMessageFragment);
             hidenFab();
             // setActionBarAutoHide(true);
 

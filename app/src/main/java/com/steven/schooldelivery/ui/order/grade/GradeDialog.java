@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.steven.schooldelivery.R;
@@ -21,15 +20,16 @@ public class GradeDialog {
     private String mOrderId;
     private Dialog mDialog;
     private RatingBar ratingBar;
-    private TextView gradeTextView;
+    // private TextView gradeTextView;
 
     public GradeDialog(@NonNull Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_grader, null);
-        gradeTextView = (TextView) view.findViewById(R.id.grade_textView);
+        // gradeTextView = (TextView) view.findViewById(R.id.grade_textView);
         ratingBar = (RatingBar) view.findViewById(R.id.grade_ratingBar);
         ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
             if(fromUser){
-                gradeTextView.setText(""+rating*2);
+                mDialog.setTitle("评分    "+rating*2);
+                // gradeTextView.setText(""+rating*2);
             }
         });
         mDialog = new AlertDialog.Builder(context)
@@ -66,7 +66,7 @@ public class GradeDialog {
      */
     public void show() {
         ratingBar.setRating(4);
-        gradeTextView.setText("" + ratingBar.getRating()*2);
+        mDialog.setTitle("评分    "+ratingBar.getRating()*2);
         mDialog.show();
     }
 }

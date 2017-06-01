@@ -40,6 +40,8 @@
         </activity>
         <activity android:name=".ui.userinfo.UpgradeActivity">
         </activity>
+        <activity android:name=".ui.message.MessagesFragment">
+        </activity>
     </application>
 
 </manifest>

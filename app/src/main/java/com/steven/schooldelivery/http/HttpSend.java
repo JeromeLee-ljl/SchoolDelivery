@@ -1,5 +1,6 @@
 package com.steven.schooldelivery.http;
 
+import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.steven.schooldelivery.http.gson.HttpResponse;
 
@@ -41,7 +42,8 @@ public abstract class HttpSend {
      * 解析返回结果
      */
     protected HttpResponse parseResult(String response) {
-        HttpResponse result = gson.fromJson(response, HttpResponse.class);
+        // HttpResponse result = gson.fromJson(response, HttpResponse.class);
+        HttpResponse result = JSON.parseObject(response, HttpResponse.class);
 
         Object content = result.getData();
         if (content == null) {              //content为空时，则不解析content

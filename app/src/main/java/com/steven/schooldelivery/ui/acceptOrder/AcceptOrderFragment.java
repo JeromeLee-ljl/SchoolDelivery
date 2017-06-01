@@ -8,18 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.steven.schooldelivery.R;
 import com.steven.schooldelivery.adapter.AcceptOrderItemAdapter;
-import com.steven.schooldelivery.adapter.entity.AcceptOrderItem;
-import com.steven.schooldelivery.db.Order;
+import com.steven.schooldelivery.db.DetailedOrder;
+import com.steven.schooldelivery.http.HttpGetAcceptOrders;
+import com.steven.schooldelivery.http.gson.HttpResponse;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by 22340 on 2017/5/7.
@@ -28,38 +26,28 @@ import java.util.Locale;
 public class AcceptOrderFragment extends Fragment{
     private static final String TAG = "AcceptOrderFragment";
     private View mRootView;
-    private List<Order> mOrderList;
-    private List<AcceptOrderItem> mAcceptOrderItemList;
-    private RecyclerView mRecyclerView;
+    private List<DetailedOrder> mOrderList;
+
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private RecyclerView mRecyclerView;
+    private AcceptOrderItemAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if(mRootView==null){
             mRootView =  inflater.inflate(R.layout.fragment_order_accept, container, false);
-            initData();
-            getAcceptOrderItems();
-            initView();
-            refresh();
+            init();
         }
         return mRootView;
     }
 
-    /**
-     * 刷新订单列表
-     */
-    private void refresh(){
-        //// TODO: 2017/5/7 下拉刷新
-        new Thread(() -> {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            getActivity().runOnUiThread(() -> mSwipeRefreshLayout.setRefreshing(false));
-        }).start();
+    private void init() {
+        mOrderList = new ArrayList<>();
+        initView();
+        refresh();
     }
+
 
     private void initView() {
         mSwipeRefreshLayout = (SwipeRefreshLayout) mRootView.findViewById(R.id.SwipeRefreshLayout);
@@ -68,81 +56,53 @@ public class AcceptOrderFragment extends Fragment{
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.RecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        AcceptOrderItemAdapter acceptOrderItemAdapter = new AcceptOrderItemAdapter(mAcceptOrderItemList);
-        mRecyclerView.setAdapter(acceptOrderItemAdapter);
-    }
-
-    private void getAcceptOrderItems() {
-        DateFormat dateFormat = new SimpleDateFormat("MM月dd日 HH:mm", Locale.CHINA);
-        for (Order order : mOrderList) {
-            AcceptOrderItem acceptOrderItem = new AcceptOrderItem();
-
-            acceptOrderItem.setOrderId(order.getOrderId());
-            acceptOrderItem.setCreateTime(dateFormat.format(order.getCreatetime()));
-            acceptOrderItem.setExpressName(order.getExpressName());
-            acceptOrderItem.setDeliveryTime(dateFormat.format(order.getDeliveryTime()));
-            acceptOrderItem.setPickupAddress(order.getPickupAddress());
-            acceptOrderItem.setPickupTime(dateFormat.format(order.getPickupTime()));
-            double price = order.getPrice();
-            if(price==5){
-                acceptOrderItem.setPrice("小件   "+String.valueOf(price)+"元");
-            }else if (price==10){
-                acceptOrderItem.setPrice("大件   "+String.valueOf(price)+"元");
-            }else {
-                acceptOrderItem.setPrice(String.valueOf(price)+"元");
-            }
-            mAcceptOrderItemList.add(acceptOrderItem);
-        }
+        mAdapter = new AcceptOrderItemAdapter(getActivity(),mOrderList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     /**
-     * 获取订单信息
+     * 刷新订单列表
      */
-    // TODO: 2017/5/6 获取订单信息
-    private void initData() {
-        mOrderList =new ArrayList<>();
-        mAcceptOrderItemList = new ArrayList<>();
-        for(int i=0;i<10;i++) {
-            Order order1 = new Order();
-            order1.setPrice(5.0);
-            order1.setRecipientId("111");
-            order1.setReplacementId("222");
-            order1.setExpressName("圆通");
-            order1.setState(2);
-            order1.setCreatetime(String.valueOf(new Timestamp(2017,5,1,10,55,10,0).getTime()));
+    private void refresh(){
+        //// TODO: 2017/5/7 下拉刷新
+        new Thread(() -> {
+            getAcceptOrderItems();
 
-            order1.setOrderId("123");
-            order1.setFinishtime(String.valueOf(new Timestamp(2017,5,2,10,55,10,0).getTime()));
-            order1.setPickupTime(String.valueOf(new Timestamp(2017,5,1,11,55,10,0).getTime()));
-            order1.setDeliveryTime(String.valueOf(new Timestamp(2017,5,1,11,55,10,0).getTime()));
-            order1.setGrade("good");
-            order1.setRemark("备注：quickly");
-            order1.setExpressCode("单号");
-            order1.setPickupAddress("取件地点11111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-            order1.setPickupCode("取件号码");
-            order1.setDeliveryAddress("送件地点");
-            mOrderList.add(order1);
+            getActivity().runOnUiThread(() -> {
+                mAdapter.notifyDataSetChanged();
+                mSwipeRefreshLayout.setRefreshing(false);
+            });
+        }).start();
+    }
 
-
-            Order order2 = new Order();
-            order2.setPrice(10.0);
-            order2.setRecipientId("111");
-            order2.setReplacementId("222");
-            order2.setExpressName("韵达");
-            order2.setState(2);
-            order2.setCreatetime(String.valueOf(new Timestamp(2017,5,1,10,55,10,0).getTime()));
-
-            order2.setOrderId("124");
-            order2.setFinishtime(String.valueOf(new Timestamp(2017,5,2,10,55,10,0).getTime()));
-            order2.setPickupTime(String.valueOf(new Timestamp(2017,5,1,11,55,10,0).getTime()));
-            order2.setDeliveryTime(String.valueOf(new Timestamp(2017,5,1,11,55,10,0).getTime()));
-            order2.setGrade("good");
-            order2.setRemark("备注：quickly");
-            order2.setExpressCode("单号");
-            order2.setPickupAddress("取件地点");
-            order2.setPickupCode("取件号码");
-            order2.setDeliveryAddress("送件地点");
-            mOrderList.add(order2);
+    private void getAcceptOrderItems() {
+        HttpResponse response = new HttpGetAcceptOrders().send(null);
+        if(response==null) {
+            getActivity().runOnUiThread(() -> Toast.makeText(getContext(), R.string.no_conntected_net, Toast.LENGTH_SHORT).show());
+        }else if(response.getStatus()==200){
+            List<DetailedOrder> detailedOrders = (List<DetailedOrder>) response.getData();
+            mOrderList.clear();
+            mOrderList.addAll(detailedOrders);
         }
+
+        // for (Order order : mOrderList) {
+        //     AcceptOrderItem acceptOrderItem = new AcceptOrderItem();
+        //
+        //     acceptOrderItem.setOrderId(order.getOrderId());
+        //     acceptOrderItem.setCreateTime(Util.formatDate(order.getCreatetime()));
+        //     acceptOrderItem.setExpressName(order.getExpressName());
+        //     acceptOrderItem.setDeliveryTime(Util.formatDate(order.getDeliveryTime()));
+        //     acceptOrderItem.setPickupAddress(order.getPickupAddress());
+        //     acceptOrderItem.setPickupTime(Util.formatDate(order.getPickupTime()));
+        //     double price = order.getPrice();
+        //     if(price==5){
+        //         acceptOrderItem.setPrice("小件   "+String.valueOf(price)+"元");
+        //     }else if (price==10){
+        //         acceptOrderItem.setPrice("大件   "+String.valueOf(price)+"元");
+        //     }else {
+        //         acceptOrderItem.setPrice(String.valueOf(price)+"元");
+        //     }
+        //     mAcceptOrderItemList.add(acceptOrderItem);
+        // }
     }
 }
