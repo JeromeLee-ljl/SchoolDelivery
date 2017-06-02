@@ -39,6 +39,7 @@ public class Constant {
 
         public static class Orders{
             public static final String TOKEN = "token";
+            public static final String STATE = "state";
             public static final String EXPRESSNAME = "express_name";
             public static final String PICKUPADDRESS = "pickup_address";
             public static final String PICKUPTIME = "pickup_time";

@@ -1,5 +1,6 @@
 package com.steven.schooldelivery.ui.order.info;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 /**
  * Created by 22340 on 2017/5/10.
  */
-
+@SuppressLint("ValidFragment")
 public class OrderDetailFragment extends Fragment {
     private static final String TAG = "OrderDetailFragment";
 
@@ -39,6 +40,7 @@ public class OrderDetailFragment extends Fragment {
 
     // private String mOrderId;
     private DetailedOrder mOrder;
+
 
     public OrderDetailFragment(DetailedOrder order) {
         mOrder = order;

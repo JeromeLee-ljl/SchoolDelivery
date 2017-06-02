@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.steven.schooldelivery.Config;
 import com.steven.schooldelivery.R;
 import com.steven.schooldelivery.base.BaseActivity;
 import com.steven.schooldelivery.db.User;
@@ -109,7 +110,10 @@ public class MainActivity extends BaseActivity
         View headView = navigationView.getHeaderView(0);
         TextView name = (TextView) headView.findViewById(R.id.name_textView);
         TextView phone = (TextView) headView.findViewById(R.id.phone_textView);
-        User user = User.getCurrentUser(this);
+        User user = null;
+        if(!Config.ISDEBUG){
+             user = User.getCurrentUser(this);
+        }
         if (user != null) {
             name.setText(user.getName());
             phone.setText(user.getPhone());

@@ -1,5 +1,6 @@
 package com.steven.schooldelivery.ui.order.info;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,7 +26,7 @@ import java.util.Map;
 /**
  * Created by 22340 on 2017/5/8.
  */
-
+@SuppressLint("ValidFragment")
 public class OrderStateFragment extends Fragment {
     private static final String TAG = "OrderStateFragment";
     private View mRootView;
