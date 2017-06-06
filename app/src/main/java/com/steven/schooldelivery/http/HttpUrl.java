@@ -28,6 +28,8 @@ public class HttpUrl {
     //get——消息查看
     public static final String MESSAGES =SERVER_URL+"/messages";
 
+    public static final String CREDIT = SERVER_URL+"/credits";
+
 
 
 

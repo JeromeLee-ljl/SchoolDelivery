@@ -46,7 +46,7 @@ public class DetailedOrder extends Order  {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(" id:").append(getOrderId())
-                .append(" createTime:").append(getCreatetime());
+                .append(" createTime:").append(getCreateTime());
         // return builder.toString();
         return new Gson().toJson(this);
     }

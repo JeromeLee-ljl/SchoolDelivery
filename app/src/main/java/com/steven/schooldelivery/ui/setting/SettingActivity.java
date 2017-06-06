@@ -21,8 +21,12 @@ public class SettingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        init();
     }
 
+    private void init(){
+        setToolBar("设置");
+    }
     /**
      * 点击退出登陆
      */

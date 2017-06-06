@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,6 +15,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +26,7 @@ import com.steven.schooldelivery.Config;
 import com.steven.schooldelivery.R;
 import com.steven.schooldelivery.base.BaseActivity;
 import com.steven.schooldelivery.db.User;
+import com.steven.schooldelivery.http.HttpGetCredit;
 import com.steven.schooldelivery.http.gson.HttpResponse;
 import com.steven.schooldelivery.ui.acceptOrder.AcceptOrderFragment;
 import com.steven.schooldelivery.ui.message.MessagesFragment;
@@ -31,6 +34,9 @@ import com.steven.schooldelivery.ui.order.NewOrderActivity;
 import com.steven.schooldelivery.ui.order.OrderFragment;
 import com.steven.schooldelivery.ui.setting.SettingActivity;
 import com.steven.schooldelivery.ui.userinfo.UserInfoActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.litepal.LitePalApplication.getContext;
 
@@ -40,11 +46,12 @@ public class MainActivity extends BaseActivity
     private FloatingActionButton mFloatingActionButton;
     private Fragment mOrderFragment, mAcceptOrderFragment, mMessageFragment;
 
+    private MenuItem mReplaceMenuItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         init();
     }
 
@@ -53,16 +60,15 @@ public class MainActivity extends BaseActivity
         initDrawer();
         initFloatingActionButton();
         initFragments();
+
+        getcredit();//获取信用值
     }
 
     private void initActionbar() {
         setToolBar("订单");
-        //todo 透明
     }
 
     private void initFragments() {
-        // TODO: 2017/5/5  Fragment初始化
-
         mOrderFragment = new OrderFragment();
         mAcceptOrderFragment = new AcceptOrderFragment();
         mMessageFragment = new MessagesFragment();
@@ -107,16 +113,23 @@ public class MainActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //设置化滑动菜单顶部 用户信息
+        mReplaceMenuItem = navigationView.getMenu().getItem(1);
         View headView = navigationView.getHeaderView(0);
         TextView name = (TextView) headView.findViewById(R.id.name_textView);
         TextView phone = (TextView) headView.findViewById(R.id.phone_textView);
         User user = null;
-        if(!Config.ISDEBUG){
-             user = User.getCurrentUser(this);
+        if (!Config.ISDEBUG) {
+            user = User.getCurrentUser(this);
         }
+
         if (user != null) {
             name.setText(user.getName());
             phone.setText(user.getPhone());
+            if (user.getIdentity() == User.UserType.REPLACEMENT) {
+                mReplaceMenuItem.setEnabled(true);
+            } else if (user.getIdentity() == User.UserType.RECIPIENT) {
+                mReplaceMenuItem.setEnabled(false);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -133,16 +146,21 @@ public class MainActivity extends BaseActivity
         drawer.setDrawerListener(toggle);
     }
 
-    // private void initActionbar() {
-    //     //初始化导航栏
-    //     toolbar = (Toolbar) findViewById(R.id.toolbar);
-    //     setSupportActionBar(toolbar);
-    //     mActionBar = getSupportActionBar();
-    //     if (mActionBar != null) {
-    //         mActionBar.setTitle("订单");
-    //     }
-    // }
 
+    private void getcredit() {
+        new Thread(() -> {
+            String uid = User.getCurrentUser(this).getUid();
+            Map<String, String> params = new HashMap<>();
+            params.put("uid", uid);
+            HttpResponse response = new HttpGetCredit().send(params);
+            if (response!=null&&response.getStatus() == 200) {
+                HttpGetCredit.CreditResponse creditPrsponse = (HttpGetCredit.CreditResponse) response.getData();
+                String credit = creditPrsponse.getCredit_value();
+                Log.d(TAG, "getcredit: "+credit);
+                getSharedPreferences("credit", MODE_PRIVATE).edit().putString("credit", credit).apply();
+            }
+        }).start();
+    }
 
     @Override
     public void onBackPressed() {
@@ -163,12 +181,11 @@ public class MainActivity extends BaseActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO: 2017/5/5 menu
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        // int id = item.getItemId();
+        //
+        // if (id == R.id.action_settings) {
+        //     return true;
+        // }
 
         return super.onOptionsItemSelected(item);
     }
@@ -181,7 +198,7 @@ public class MainActivity extends BaseActivity
 
         if (id == R.id.nav_order) {
             actionBar.setTitle("我的订单");
-            replaceFragment(mOrderFragment);
+            replaceFragment(new OrderFragment());
             showFab();
             // setActionBarAutoHide(true);
 
@@ -198,12 +215,16 @@ public class MainActivity extends BaseActivity
             // setActionBarAutoHide(true);
 
         } else if (id == R.id.nav_user_info) {
-            UserInfoActivity.actionStart(this);
+            new Handler().postDelayed(() -> {
+                UserInfoActivity.actionStart(this);
+            }, 100);
             // overridePendingTransition(R.anim.enter_from_left,R.anim.exit_to_right);
             // overridePendingTransition(R.anim.enter_from_right,R.anim.exit_to_left);
             // mActionBar.setTitle("个人信息");
         } else if (id == R.id.nav_setting) {
-            SettingActivity.actionStart(this);
+            new Handler().postDelayed(() -> {
+                SettingActivity.actionStart(this);
+            }, 100);
             // mActionBar.setTitle("设置");
         }
 

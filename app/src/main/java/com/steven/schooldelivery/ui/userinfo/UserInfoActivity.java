@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.steven.schooldelivery.R;
 import com.steven.schooldelivery.base.BaseActivity;
@@ -17,10 +17,13 @@ import com.steven.schooldelivery.util.LogUtil;
 public class UserInfoActivity extends BaseActivity {
     User mUser;
 
+    String credit;
+
     //ui
     TextView user_name_textView,user_sex_textView, user_phone_textView, user_identity_textView;
     TextView user_schoolName_textView,user_schoolAddress_textView,user_schoolCard_textView;
     TextView user_idCard_textView,user_aliPay_textView,user_photo_textView;
+    TextView creditTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +37,13 @@ public class UserInfoActivity extends BaseActivity {
         setToolBar("个人信息");
         initView();
         mUser = User.getCurrentUser(this);
-        Log.e(TAG, "init: "+(mUser==null));
+        credit = getSharedPreferences("credit",MODE_PRIVATE).getString("credit","0");
         showUserInfo();
     }
 
     private void showUserInfo() {
+        creditTextView.setText(credit);
+
         user_name_textView.setText(mUser.getName());
         user_sex_textView.setText(mUser.getSex());
         user_phone_textView.setText(mUser.getPhone());
@@ -68,6 +73,9 @@ public class UserInfoActivity extends BaseActivity {
     }
 
     private void initView() {
+
+        creditTextView = (TextView) findViewById(R.id.creditTextView);
+
         user_name_textView = (TextView) findViewById(R.id.user_name_textView);
 
         user_sex_textView = (TextView) findViewById(R.id.user_sex_textView);
@@ -88,40 +96,13 @@ public class UserInfoActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode==1){
-            if (resultCode==RESULT_OK){
-
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
     public void onClickUpgrade(View view) {
         LogUtil.d(TAG, "onClickUpgrade: ");
-
-        // final AlertDialog dialog = new AlertDialog.Builder(this).create();
-        // // dialog.
-        // View view1 = View.inflate(this,R.layout.activity_upgrade,null);
-        //
-        // Button button = (Button) view1.findViewById(R.id.upgrade_button);
-        // button.setOnClickListener(v -> {
-        //     // dialog.dismiss();
-        //     AlertDialog dialog1 = new AlertDialog.Builder(this).create();
-        //     View view2 = View.inflate(this,R.layout.fragment_myinfo,null);
-        //     dialog1.setView(view2);
-        //     dialog1.show();
-        // });
-        // dialog.setView(view1);
-        // // dialog
-        //
-        // dialog.show();
-
         UpgradeActivity.actionStart(this);
     }
 
     public void onClickDegrade(View view) {
-
+        LogUtil.d(TAG, "onClickDegrade: ");
+        Toast.makeText(this,"暂时不支持降级",Toast.LENGTH_SHORT).show();
     }
 }

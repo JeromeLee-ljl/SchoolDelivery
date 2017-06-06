@@ -15,7 +15,7 @@ public class Order extends DataSupport  implements Serializable {
     private String orderId;
     //todo
     @SerializedName("createTime")
-    private String createtime;
+    private String createTime;
     @SerializedName("finishTime")
     private String finishtime;
     @SerializedName("grade")
@@ -50,8 +50,8 @@ public class Order extends DataSupport  implements Serializable {
         this.orderId = orderId;
     }
 
-    public void setCreatetime(String createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public void setFinishtime(String finishtime) {
@@ -114,8 +114,8 @@ public class Order extends DataSupport  implements Serializable {
         return orderId;
     }
 
-    public String getCreatetime() {
-        return createtime;
+    public String getCreateTime() {
+        return createTime;
     }
 
     public String getFinishtime() {

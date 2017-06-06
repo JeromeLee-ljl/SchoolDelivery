@@ -84,7 +84,7 @@ public class OrderDetailFragment extends Fragment {
         //备注
         remark_textView.setText(order.getRemark());
         //订单详情
-        create_time_textView.setText(Util.formatDate(order.getCreatetime()));
+        create_time_textView.setText(Util.formatDate(order.getCreateTime()));
         order_id_textView.setText(order.getOrderId());
         if (order.getPrice() == 5) {
             order_size_textView.setText("小件");

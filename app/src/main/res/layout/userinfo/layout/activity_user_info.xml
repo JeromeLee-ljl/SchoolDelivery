@@ -414,6 +414,7 @@
                     android:layout_height="match_parent">
 
                     <ImageButton
+                        android:padding="8dp"
                         android:id="@+id/upgrade_img_btn"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -461,7 +462,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
-                        android:text="取消带去人权限"
+                        android:text="取消代取人权限"
                         android:textColor="@color/primary_text"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -470,6 +471,7 @@
                         tools:layout_editor_absoluteY="16dp"/>
 
                     <ImageButton
+                        android:padding="8dp"
                         android:id="@+id/degrade_img_btn"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -488,6 +490,46 @@
                         tools:layout_editor_absoluteX="40dp"
                         tools:layout_editor_absoluteY="0dp"/>
 
+                </android.support.constraint.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="32dp">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:id="@+id/creditTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="0dp"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/textView44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:text="信用值"
+                        android:textColor="@color/primary_text"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
                 </android.support.constraint.ConstraintLayout>
 
             </LinearLayout>

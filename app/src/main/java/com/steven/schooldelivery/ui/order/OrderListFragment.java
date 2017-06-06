@@ -16,6 +16,7 @@ import com.steven.schooldelivery.Config;
 import com.steven.schooldelivery.R;
 import com.steven.schooldelivery.adapter.OrderItemAdapter;
 import com.steven.schooldelivery.db.DetailedOrder;
+import com.steven.schooldelivery.entity.OrderStateEnum;
 import com.steven.schooldelivery.http.HttpGetOrders;
 import com.steven.schooldelivery.http.gson.HttpResponse;
 import com.steven.schooldelivery.util.LogUtil;
@@ -65,7 +66,7 @@ public class OrderListFragment extends Fragment {
     /**
      * 刷新订单列表
      */
-    private void refresh() {
+    public void refresh() {
         new Thread(() -> {
             // TODO: 2017/5/10 delete Thread.sleep(100);
             try {
@@ -95,7 +96,7 @@ public class OrderListFragment extends Fragment {
                 order1.setReplacementId("222");
                 order1.setExpressName("圆通快递");
                 order1.setState(1);
-                order1.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order1.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order1.setOrderId("123");
                 order1.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -116,7 +117,7 @@ public class OrderListFragment extends Fragment {
                 order3.setReplacementId("222");
                 order3.setExpressName("圆通快递");
                 order3.setState(2);
-                order3.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order3.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order3.setOrderId("123");
                 order3.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -138,7 +139,7 @@ public class OrderListFragment extends Fragment {
                 order4.setReplacementId("222");
                 order4.setExpressName("圆通快递");
                 order4.setState(3);
-                order4.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order4.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order4.setOrderId("123");
                 order4.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -160,7 +161,7 @@ public class OrderListFragment extends Fragment {
                 order5.setReplacementId("222");
                 order5.setExpressName("圆通快递");
                 order5.setState(4);
-                order5.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order5.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order5.setOrderId("123");
                 order5.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -182,7 +183,7 @@ public class OrderListFragment extends Fragment {
                 order6.setReplacementId("222");
                 order6.setExpressName("圆通快递");
                 order6.setState(5);
-                order6.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order6.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order6.setOrderId("123");
                 order6.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -204,7 +205,7 @@ public class OrderListFragment extends Fragment {
                 order7.setReplacementId("222");
                 order7.setExpressName("圆通快递");
                 order7.setState(6);
-                order7.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order7.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order7.setOrderId("123");
                 order7.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -226,7 +227,7 @@ public class OrderListFragment extends Fragment {
                 order8.setReplacementId("222");
                 order8.setExpressName("圆通快递");
                 order8.setState(7);
-                order8.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order8.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order8.setOrderId("123");
                 order8.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -248,7 +249,7 @@ public class OrderListFragment extends Fragment {
                 order2.setReplacementId("111");
                 order2.setExpressName("圆通快递");
                 order2.setState(1);
-                order2.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order2.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order2.setOrderId("124");
                 order2.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -269,7 +270,7 @@ public class OrderListFragment extends Fragment {
                 order9.setReplacementId("111");
                 order9.setExpressName("圆通快递");
                 order9.setState(2);
-                order9.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order9.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order9.setOrderId("124");
                 order9.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -290,7 +291,7 @@ public class OrderListFragment extends Fragment {
                 order10.setReplacementId("111");
                 order10.setExpressName("圆通快递");
                 order10.setState(3);
-                order10.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order10.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order10.setOrderId("124");
                 order10.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -310,7 +311,7 @@ public class OrderListFragment extends Fragment {
                 order11.setReplacementId("111");
                 order11.setExpressName("圆通快递");
                 order11.setState(4);
-                order11.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order11.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order11.setOrderId("124");
                 order11.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -330,7 +331,7 @@ public class OrderListFragment extends Fragment {
                 order12.setReplacementId("111");
                 order12.setExpressName("圆通快递");
                 order12.setState(5);
-                order12.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order12.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order12.setOrderId("124");
                 order12.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -351,7 +352,7 @@ public class OrderListFragment extends Fragment {
                 order13.setReplacementId("111");
                 order13.setExpressName("圆通快递");
                 order13.setState(6);
-                order13.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order13.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order13.setOrderId("124");
                 order13.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -371,7 +372,7 @@ public class OrderListFragment extends Fragment {
                 order14.setReplacementId("111");
                 order14.setExpressName("圆通快递");
                 order14.setState(7);
-                order14.setCreatetime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
+                order14.setCreateTime(String.valueOf(new Timestamp(2017, 5, 1, 10, 55, 10, 0).getTime()));
 
                 order14.setOrderId("124");
                 order14.setFinishtime(String.valueOf(new Timestamp(2017, 5, 2, 10, 55, 10, 0).getTime()));
@@ -398,25 +399,30 @@ public class OrderListFragment extends Fragment {
                 DetailedOrder.saveAll(orders);
             }
         } else {
-
             getActivity().runOnUiThread(() -> Toast.makeText(getContext(), response.getMessage(), Toast.LENGTH_SHORT).show());
         }
         switch (mType) {
             case ALL:
                 mOrders.clear();
-                mOrders.addAll(DataSupport.findAll(DetailedOrder.class));
+                mOrders.addAll(DataSupport.order("createTime desc").find(DetailedOrder.class));
                 break;
             case UNFINISHED:
                 mOrders.clear();
-                mOrders.addAll(DataSupport.findAll(DetailedOrder.class));
+                mOrders.addAll(DataSupport
+                        .where("state != ?", String.valueOf(OrderStateEnum.COMPLETED.ordinal()))
+                        .order("createTime desc")
+                        .find(DetailedOrder.class));
                 break;
             case FINISHED:
                 mOrders.clear();
-                mOrders.addAll(DataSupport.findAll(DetailedOrder.class));
+                mOrders.addAll(DataSupport
+                        .where("state = ?", String.valueOf(OrderStateEnum.COMPLETED.ordinal()))
+                        .order("createTime desc")
+                        .find(DetailedOrder.class));
                 break;
             default:
                 mOrders.clear();
-                mOrders.addAll(DataSupport.findAll(DetailedOrder.class));
+                mOrders.addAll(DataSupport.order("createTime desc").find(DetailedOrder.class));
                 break;
         }
         LogUtil.d(TAG, "getOrderData: size:"+mOrders.size());
@@ -431,7 +437,7 @@ public class OrderListFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.RecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mOrderItemAdapter = new OrderItemAdapter(getActivity(), mOrders);
+        mOrderItemAdapter = new OrderItemAdapter(this, mOrders);
         mRecyclerView.setAdapter(mOrderItemAdapter);
     }
 

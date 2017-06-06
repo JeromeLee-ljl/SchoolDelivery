@@ -56,14 +56,14 @@ public class AcceptOrderFragment extends Fragment{
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.RecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new AcceptOrderItemAdapter(getActivity(),mOrderList);
+        mAdapter = new AcceptOrderItemAdapter(this,mOrderList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     /**
      * 刷新订单列表
      */
-    private void refresh(){
+    public void refresh(){
         //// TODO: 2017/5/7 下拉刷新
         new Thread(() -> {
             getAcceptOrderItems();
@@ -89,7 +89,7 @@ public class AcceptOrderFragment extends Fragment{
         //     AcceptOrderItem acceptOrderItem = new AcceptOrderItem();
         //
         //     acceptOrderItem.setOrderId(order.getOrderId());
-        //     acceptOrderItem.setCreateTime(Util.formatDate(order.getCreatetime()));
+        //     acceptOrderItem.setCreateTime(Util.formatDate(order.getCreateTime()));
         //     acceptOrderItem.setExpressName(order.getExpressName());
         //     acceptOrderItem.setDeliveryTime(Util.formatDate(order.getDeliveryTime()));
         //     acceptOrderItem.setPickupAddress(order.getPickupAddress());

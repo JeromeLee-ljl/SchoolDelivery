@@ -29,7 +29,7 @@ public class OrderFragment extends Fragment {
     //todo 分类
     private OrderListFragment mAllFragment, mUndoneFragment;
 
-    private String[] mTitle = {"未完成", "...", "所有"};
+    private String[] mTitle = {"未完成", "已完成", "所有"};
     private ArrayList<OrderListFragment> mFragments;
 
     @Override
@@ -49,8 +49,7 @@ public class OrderFragment extends Fragment {
         mAllFragment = new OrderListFragment(OrderListFragment.TYPE.ALL);
         // mAllFragment.setContentType(OrderListFragment.TYPE.ALL);
         mFragments.add(mUndoneFragment);
-        //// TODO: 2017/5/13
-        mFragments.add(new OrderListFragment(OrderListFragment.TYPE.ALL));
+        mFragments.add(new OrderListFragment(OrderListFragment.TYPE.FINISHED));
         mFragments.add(mAllFragment);
 
         //tab, viewPager 初始化

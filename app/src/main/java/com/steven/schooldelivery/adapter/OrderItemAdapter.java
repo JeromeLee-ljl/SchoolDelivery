@@ -1,6 +1,5 @@
 package com.steven.schooldelivery.adapter;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +19,7 @@ import com.steven.schooldelivery.db.Order;
 import com.steven.schooldelivery.entity.OrderStateEnum;
 import com.steven.schooldelivery.http.HttpChangeOrderState;
 import com.steven.schooldelivery.http.gson.HttpResponse;
+import com.steven.schooldelivery.ui.order.OrderListFragment;
 import com.steven.schooldelivery.ui.order.grade.GradeDialog;
 import com.steven.schooldelivery.ui.order.info.OrderInfoActivity;
 import com.steven.schooldelivery.util.LogUtil;
@@ -42,15 +42,15 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
     private String mUserId;
 
     private GradeDialog mGradeDialog;
-    private Activity mActivity;
+    private OrderListFragment orderListFragment;
 
-    public OrderItemAdapter(Activity activity, List<DetailedOrder> orders) {
+    public OrderItemAdapter(OrderListFragment fragment, List<DetailedOrder> orders) {
         mOrders = orders;
-        mActivity = activity;
+        orderListFragment = fragment;
 
-        SharedPreferences sharedPreferences = activity.getSharedPreferences(Constant.SharedPreferences.USERINFO, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = fragment.getActivity().getSharedPreferences(Constant.SharedPreferences.USERINFO, MODE_PRIVATE);
         mUserId = sharedPreferences.getString(Constant.SharedPreferences.ID, "");
-        mGradeDialog = new GradeDialog(activity);
+        mGradeDialog = new GradeDialog(fragment.getActivity(),this);
     }
 
     @Override
@@ -66,57 +66,47 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
         //// TODO: 2017/5/7 orderItem绑定事件  note: 区分收件与代取
         holder.cancel_order_btn.setOnClickListener(v -> {
             String orderId = getOrderId(holder);
-            new Thread(() -> {
-                Map<String,String> params = new HashMap<>();
-                params.put(Constant.HttpParam.Orders.STATE, String.valueOf(OrderStateEnum.CANCELED.ordinal()));
-                params.put("order_id",orderId);
-                HttpResponse response = new HttpChangeOrderState().send(params);
-                mActivity.runOnUiThread(this::notifyDataSetChanged);//更新列表
-
-            }).start();
-            // Toast.makeText(parent.getContext(), "取消：orderId: " + orderId, Toast.LENGTH_SHORT).show();
+            changeOrderState(orderId,OrderStateEnum.CANCELED);
         });
         holder.pickup_btn.setOnClickListener(v -> {
             String orderId = getOrderId(holder);
-            new Thread(() -> {
-                Map<String,String> params = new HashMap<>();
-                params.put(Constant.HttpParam.Orders.STATE, String.valueOf(OrderStateEnum.TAKE_PARCEL_WAIT_DELIVERY.ordinal()));
-                params.put("order_id",orderId);
-                HttpResponse response = new HttpChangeOrderState().send(params);
-                mActivity.runOnUiThread(this::notifyDataSetChanged);//更新列表
-                if(response.getStatus()!=200){
-                    mActivity.runOnUiThread(() -> {
-                        Toast.makeText(parent.getContext(), "成功", Toast.LENGTH_SHORT).show();
-                    });
-                }
-            }).start();
-
+            changeOrderState(orderId,OrderStateEnum.TAKE_PARCEL_WAIT_DELIVERY);
         });
         holder.confirm_delivery_btn.setOnClickListener(v -> {
             String orderId = getOrderId(holder);
-            new Thread(() -> {
-                Map<String,String> params = new HashMap<>();
-                params.put(Constant.HttpParam.Orders.STATE, String.valueOf(OrderStateEnum.WAIT_COMMENT.ordinal()));
-                params.put("order_id",orderId);
-                HttpResponse response = new HttpChangeOrderState().send(params);
-
-                    mActivity.runOnUiThread(this::notifyDataSetChanged);//更新列表
-            }).start();
-            // Toast.makeText(parent.getContext(), "确认送达：orderId: " + orderId, Toast.LENGTH_SHORT).show();
+            changeOrderState(orderId,OrderStateEnum.WAIT_COMMENT);
         });
         holder.comment_btn.setOnClickListener(v -> {
             String orderId = getOrderId(holder);
-            new Thread(() -> {
-                Map<String,String> params = new HashMap<>();
-                params.put(Constant.HttpParam.Orders.STATE, String.valueOf(OrderStateEnum.COMPLETED.ordinal()));
-                params.put("order_id",orderId);
-                HttpResponse response = new HttpChangeOrderState().send(params);
-
-                    mActivity.runOnUiThread(this::notifyDataSetChanged);//更新列表
-            }).start();
+            // new Thread(() -> {
+            //     Map<String, String> params = new HashMap<>();
+            //     params.put(Constant.HttpParam.Orders.STATE, String.valueOf(OrderStateEnum.COMPLETED.ordinal()));
+            //     params.put("order_id", orderId);
+            //     HttpResponse response = new HttpChangeOrderState().send(params);
+            //
+            //     orderListFragment.runOnUiThread(this::notifyDataSetChanged);//更新列表
+            // }).start();
             mGradeDialog.setOrderId(orderId).show();//评价
         });
         return holder;
+    }
+
+    private void changeOrderState(String orderId,OrderStateEnum state){
+        new Thread(() -> {
+            Map<String, String> params = new HashMap<>();
+            params.put(Constant.HttpParam.Orders.STATE, String.valueOf(state.ordinal()));
+            params.put("order_id", orderId);
+            HttpResponse response = new HttpChangeOrderState().send(params);
+
+            orderListFragment.getActivity().runOnUiThread(() -> {
+                if (response.getStatus() == 200) {
+                    Toast.makeText(orderListFragment.getActivity(), "成功", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(orderListFragment.getActivity(), "失败:"+response.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                orderListFragment.refresh();
+            });
+        }).start();
     }
 
     public String getOrderId(final ViewHolder holder) {
@@ -129,7 +119,7 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
         // LogUtil.d(TAG, "onBindViewHolder:position: "+position);
         Order order = mOrders.get(position);
         //设置是收件单还是 代取单
-        Log.d(TAG, "onBindViewHolder: mUserId"+mUserId);
+        Log.d(TAG, "onBindViewHolder: mUserId" + mUserId);
         if (mUserId.equals(order.getRecipientId())) {            //此单为收件单
             holder.type_recipient_textView.setVisibility(View.VISIBLE);
             holder.type_replace_textView.setVisibility(View.INVISIBLE);
@@ -145,7 +135,7 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
             holder.recipient_info_RelativeLayout.setVisibility(View.GONE);//不显示  //代取单需要收件人的信息
         }
 
-        holder.create_time_textView.setText(Util.formatDate(Util.DatePattern.MM_DD_HH_MM, order.getCreatetime()));
+        holder.create_time_textView.setText(Util.formatDate(Util.DatePattern.MM_DD_HH_MM, order.getCreateTime()));
         holder.order_state_textView.setText(order.getState().toString());
         holder.express_name_textView.setText(order.getExpressName());
         holder.price_textView.setText("费用：" + String.valueOf(order.getPrice()) + "元");
